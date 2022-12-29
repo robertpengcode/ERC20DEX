@@ -18,7 +18,7 @@ contract Dex {
         _;
     }
 
-    function toDexForSale() external ownerOnly {
+    function transferToDexForSale() external ownerOnly {
         uint allowanceBalance = theToken.allowance(msg.sender, address(this));
         require(allowanceBalance > 0, "there is no allowance");
         bool transfered = theToken.transferFrom(msg.sender, address(this), allowanceBalance);
@@ -26,7 +26,7 @@ contract Dex {
     }
 
     function buyToken(uint quantity) external payable {
-        require(msg.value == getTransactionAmount(quantity) * price, "payment amount incorrect");
+        require(msg.value == getTransactionValue(quantity), "payment amount incorrect");
         require(quantity <= getTokenBalance(), "not enough tokens");
         bool transfered = theToken.transfer(msg.sender, quantity);
         require(transfered, "transfer failed");
@@ -44,7 +44,7 @@ contract Dex {
         require(sent, "sent failed");
     }
 
-    function getTransactionAmount(uint quantity) public view returns(uint) {
+    function getTransactionValue(uint quantity) public view returns(uint) {
         return price * quantity;
     }
 
