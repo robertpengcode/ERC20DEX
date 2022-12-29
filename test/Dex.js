@@ -43,7 +43,7 @@ describe("Dex", function () {
     });
 
     it("Should allow owner to transfer to Dex", async function () {
-      expect(await dex.transferToDexForSale()).to.changeTokenBalances(
+      await expect(dex.transferToDexForSale()).to.changeTokenBalances(
         erc20Token,
         [owner.address, dex.address],
         [-200, 200]
@@ -58,10 +58,8 @@ describe("Dex", function () {
     });
 
     it("Should allow users to buy tokens", async function () {
-      const check = await erc20Token.balanceOf(owner.address);
-      console.log(check);
-      expect(
-        await dex.connect(user2).buyToken(100, { value: 500 })
+      await expect(
+        dex.connect(user2).buyToken(100, { value: 500 })
       ).to.changeTokenBalances(
         erc20Token,
         [user2.address, dex.address],
@@ -81,7 +79,7 @@ describe("Dex", function () {
     });
 
     it("Should allow owner withdraw tokens", async function () {
-      expect(await dex.withDrawTokens()).to.changeTokenBalances(
+      await expect(dex.withDrawTokens()).to.changeTokenBalances(
         erc20Token,
         [owner.address, dex.address],
         [100, -100]
@@ -95,7 +93,7 @@ describe("Dex", function () {
     });
 
     it("Should allow owner to withdraw fund", async function () {
-      expect(await dex.withDrawFund()).to.changeEtherBalances(
+      await expect(dex.withDrawFund()).to.changeEtherBalances(
         [owner.address, dex.address],
         [500, -500]
       );
