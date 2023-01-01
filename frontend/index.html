@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERC20 & DEX</title>
+    <style>
+        .container {
+            margin: 1rem;
+            display: flex;
+            flex-direction: column;
+            /* border: 1px solid blue; */
+            align-items: center;
+        }
+        .row {
+            display: flex;
+            flex-direction: row;
+            /* border: 1px solid green; */
+            width: 100%;
+            justify-content: space-around;
+        }
+        .item {
+            margin: 0.5rem;
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* border: 1px solid red; */
+            width: 18rem;
+        }
+        .btn {
+            width: 8rem;
+        }
+        .info {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Blockchain Practice Project</h1>
+        <h2>#2. ERC20 & DEX</h2>
+        <button onclick="getAccess()">Connect</button>
+    </header>
+    <main >
+        <div class="container">
+            <h3>A. Get Token Info</h3>
+            <div class="row">
+                <div class="item">
+                    <h4>1. Token Price: <span id="tokenPrice" class="info"></span></h4>
+                    <button class="btn" onclick="getPrice()">Get Price</button>
+                </div>
+                <div class="item">
+                    <h4>2. Availabe Tokens in Dex: <span id="dexBalance" class="info"></span></h4>
+                    <button class="btn" onclick="getDexBalance()">Get Available#</button>
+                </div>
+                <div class="item">
+                    <h4>3. My Token Balance: <span id="myBalance" class="info"></span></h4>
+                    <button class="btn" onclick="getUserBalance()">Get Balance</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h3>B. Owner's Menu</h3>
+            <div class="row">
+                <div class="item">
+                    <h4>1. Approve Tokens for Sale</h4>
+                    <div>
+                        <input type="number" id="approveToken" placeholder="enter # of tokens" min=0/>
+                        <button class="btn" onclick="approveTokens()">Approve</button>
+                    </div>
+                </div>
+                <div class="item">
+                    <h4>2. Transfer Tokens to Dex</h4>
+                    <button class="btn" onclick="transferTokensToDex()">Transfer</button>
+                </div>
+                <div class="item">
+                    <h4>3. Withdraw Tokens from Dex</h4>
+                    <button class="btn" onclick="withdrawTokens()">Withdraw Tokens</button>
+                </div>
+                <div class="item">
+                    <h4>4. Withdraw Fund from Dex</h4>
+                    <button class="btn" onclick="withdrawFund()">Withdraw Fund</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h3>C. User's Menu</h3>
+            <div class="row">
+                <div class="item">
+                    <h4>1. Buy Token:</h4>
+                    <div>
+                        <input type="number" id="buyToken" placeholder="enter # of tokens" min=0/>
+                        <button class="btn" onclick="buy()">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+    </main>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+        type="application/javascript"></script>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
